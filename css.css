@@ -1,0 +1,114 @@
+*{ 
+  
+  box-sizing:border-box;
+  text-transform:capitalize;
+  text-decoration:none;
+  list-style-type:none;
+  font-family: Gotham Rounded, sans-serif;
+}
+body{
+  background-color:aqua;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  overflow:hidden;
+}
+/* მოკლედ ჩვენს ქლოქ კონტეინერს რომელშიც არის ციფრები მოთავსებული
+გავუკეთებთ ზომას თუ რა ზომაში უნდა მოთავსდეს ყველაფერი */
+.clock{
+   width:300px;
+   height:300px;
+   background-color: rgba(255,255,255, .8);
+   border-radius:50%;
+   border:2px solid black;
+   font-weight:bold;
+   position:relative;
+}
+/* შემდეგ უკვე ამ ციფრებს გავხვდით აბსოლუტს ხოლო საათს
+გავხდით ფარდობითს, შემდეგ უკვე სიგრძე სიგანეს 100პქ გავუკეთებთ
+და როთეიშენის დახამრებით გრადუსებით გადავცემთ ციფრებს
+საწყისი როთეიშენის მნიშვნელობა იქნება 0და მერე ნელა ნელა უკვე
+ავწევთ რომ ყველა თავის ადგიალას დაიბეჭდოს */
+.clock .number {
+  --rotation: 0;
+  position:absolute;
+  width:100%;
+  height:100%;
+  text-align:center;
+  transform:rotate(var(--rotation));
+  font-size:1.5rem;
+}
+
+/* აქ უკვე ყველა ციფრებს მივანიჭებთ თავის გრადუსებს
+რითაც შევძლებთ მასზე მანიპულაციას და თითო თითო გადავა
+თავის მოცემულ გრადუსებზე */
+.clock .number1 { --rotation: 30deg;}
+.clock .number2 { --rotation: 60deg;}
+.clock .number3 { --rotation: 90deg;}
+.clock .number4 { --rotation: 120deg;}
+.clock .number5 { --rotation: 150deg;}
+.clock .number6 { --rotation: 180deg;}
+.clock .number7 { --rotation: 210deg;}
+.clock .number8 { --rotation: 240deg;}
+.clock .number9 { --rotation: 270deg;}
+.clock .number10 { --rotation: 300deg;}
+.clock .number11 { --rotation: 330deg;}
+.clock .number12 { --rotation: 360deg;}
+
+/* შემდეგი სტეპი არის რომ გამოვიძახოთ რეალურად ქლოქში არსებული ჰენდი
+რომელზეცარის პასუხისმგებელი დიდი ისარი ანუ საათების */
+.clock .hand{
+  --rotation: 0;
+  position:absolute;
+  bottom: 50%;
+  left: 50%;    /* ნუ ჯერ აქ ვუკეთებთ დიზაინს თუ როგორი უნდა იყოს
+   რეალურად დიდი ისარი, */
+  background-color:black;
+  border:1px solid white;
+  border-top-left-radius:10px;
+  border-top-right-radius:10px;
+  transform-origin:bottom;
+  z-index:10;
+  transform:translateX(-50%) rotate(calc(var(--rotation) * 1deg));
+}
+.clock::after{
+  content: '';
+  position:absolute;
+  background-color:black;
+  z-index:11;
+  width:15px;
+  height:15px;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  border-radius:20px;
+}
+
+.clock .hand.second{
+  width: 3px;
+  height:45%;
+  background-color:red;
+}
+.clock .hand.minute{
+  width: 7px;
+  height:40%;
+  background-color:black;
+}
+.clock .hand.hour{
+  width: 10px;
+  height:35%;
+  background-color:black;
+}
+
+.text{
+  font-size:100px;
+  position:absolute ;
+  left:100px;
+  box-shadow:5px 5px 5px red;
+  text-shadow:5px 5px 5px white;
+  color:black;
+  font-weight:bold;
+  letter-spacing:1px;
+}
+
